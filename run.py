@@ -11,6 +11,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("words")
 
+
 def word_picker(level):
     from numpy import random
     choice = random.randint(SHEET.worksheet(level).cell(1, 2).value)
@@ -34,20 +35,22 @@ def choose_level():
         choose_level()
 
 
-word = word_picker("hard")
+def play_game(word):
+    word_list = word.split()
+    hidden_list = []
+    x = 1
+    while x <= len(word):
+        hidden_list.append("_")
+        x += 1
+    print(hidden_list)
 
-def play_game():
+def main():
     print("Lets play Hangman!\n")
-    print("     ____")
-    print("     |   |")
-    print("     |   O")
-    print("     |  /|\ ")
-    print("     |  / \ ")
-    print("    /_\ \n")
-
+    print(SHEET.worksheet("hang").cell(1, 7).value)
+    print("\n")
     level = choose_level()
-    print(level)
-    
+    word = word_picker(level)
+    play_game(word)
 
 
-play_game()
+play_game("testing")
