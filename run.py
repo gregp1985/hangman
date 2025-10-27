@@ -35,14 +35,28 @@ def choose_level():
         choose_level()
 
 
-def play_game(word):
-    word_list = word.split()
+def hidden_word_list(word):
     hidden_list = []
     x = 1
     while x <= len(word):
         hidden_list.append("_")
         x += 1
-    print(hidden_list)
+    return hidden_list
+
+
+def check_input(letter, word):
+    positions = [pos for pos, char in enumerate(word) if char == letter]
+    if positions == []:
+        incorrect_guess(letter)
+    else:
+        correct_guess(word, positions)
+
+
+def play_game(word, hidden_letters):
+    print(hidden_letters)
+    letter = input("Guess a letter...")
+    check_input(letter, word)
+
 
 def main():
     print("Lets play Hangman!\n")
@@ -50,7 +64,10 @@ def main():
     print("\n")
     level = choose_level()
     word = word_picker(level)
-    play_game(word)
+    hidden_letters = hidden_word_list(word)
+    play_game(word, hidden_letters)
 
 
-play_game("testing")
+test  = check_input("p", "class")
+print(test)
+
