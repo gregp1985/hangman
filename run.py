@@ -85,6 +85,7 @@ def play_game(word, hidden_letters):
     print(f"You won! The word was '{word}'\n")
     main()
 
+
 def main():
     print("Lets play Hangman!\n")
     print(SHEET.worksheet("hang").cell(1, 8).value)
