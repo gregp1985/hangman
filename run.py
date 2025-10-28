@@ -44,19 +44,37 @@ def hidden_word_list(word):
     return hidden_list
 
 
+
 def check_input(letter, word):
     positions = [pos for pos, char in enumerate(word) if char == letter]
     if positions == []:
-        incorrect_guess(letter)
+        return 0
     else:
-        correct_guess(word, positions)
+        return positions
 
 
 def play_game(word, hidden_letters):
-    print(hidden_letters)
-    letter = input("Guess a letter...")
-    check_input(letter, word)
-
+    word_list = word.split()
+    while hidden_letters != word_list:
+        img = 1
+        guessed_letters = []
+        print(SHEET.worksheet("hang").cell(1, img).value)
+        print(hidden_letters)
+        print(f"Wrong guesses: {guessed_letters}")
+        letter = input("Guess a letter...")
+        guess = check_input(letter, word)
+        if guess == 0:
+            print(f"Sorry, the word doesn't contain the letter {letter}")
+            guessed_letters.append(letter)
+            if img == 7:
+                print(SHEET.worksheet("hang").cell(1, 7).value)
+                print(f"You lost! The word was {word}")
+            else:
+                img += 1
+        else:
+            for pos in guess:
+                hidden_letters[pos] = letter
+            
 
 def main():
     print("Lets play Hangman!\n")
@@ -66,8 +84,4 @@ def main():
     word = word_picker(level)
     hidden_letters = hidden_word_list(word)
     play_game(word, hidden_letters)
-
-
-test  = check_input("p", "class")
-print(test)
 
