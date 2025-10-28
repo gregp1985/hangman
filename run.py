@@ -59,24 +59,31 @@ def play_game(word, hidden_letters):
     imgh = 1
     while hidden_letters != word_list:
         print(SHEET.worksheet("hang").cell(1, imgh).value)
+        print()
         print(hidden_letters)
+        print()
         print(f"Wrong guesses: {guessed_letters}")
+        print()
         letter = input("Guess a letter...")
         # guessed_letters.append(letter)
         # print(guessed_letters)
         guess = check_input(letter, word)
+        print()
         if guess == 0:
-            print(f"Sorry, the word doesn't contain the letter {letter}")
+            print(f"Sorry, the word doesn't contain the letter {letter}\n")
             guessed_letters.append(letter)
-            if imgh == 8:
-                print(SHEET.worksheet("hang").cell(1, 7).value)
-                print(f"You lost! The word was {word}")
-                break
+            if imgh == 7:
+                print(SHEET.worksheet("hang").cell(1, 8).value)
+                print()
+                print(f"You lost! The word was '{word}'\n")
+                print("Try again!\n")
+                main()
             imgh += 1
         else:
             for pos in guess:
                 hidden_letters[pos] = letter
-
+    print(f"You won! The word was '{word}'\n")
+    main()
 
 def main():
     print("Lets play Hangman!\n")
