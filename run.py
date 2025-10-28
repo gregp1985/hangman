@@ -87,4 +87,5 @@ def main():
     hidden_letters = hidden_word_list(word)
     play_game(word, hidden_letters)
 
+
 main()
