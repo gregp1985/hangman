@@ -55,18 +55,14 @@ def check_input(letter, word):
 def play_game(word, hidden_letters):
     word_list = list(word)
     guessed_letters = []
-    print(word_list)
     imgh = 1
     while hidden_letters != word_list:
         print(SHEET.worksheet("hang").cell(1, imgh).value)
         print()
         print(hidden_letters)
         print()
-        print(f"Wrong guesses: {guessed_letters}")
-        print()
-        letter = input("Guess a letter...")
-        # guessed_letters.append(letter)
-        # print(guessed_letters)
+        print(f"Wrong guesses: {guessed_letters}\n")
+        letter = input("Guess a letter...\n")
         guess = check_input(letter, word)
         print()
         if guess == 0:
