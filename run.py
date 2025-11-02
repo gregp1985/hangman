@@ -1,3 +1,7 @@
+"""
+Connection of run.py to Google Sheets spreadsheet.
+Creation of variables to access Google Sheets.
+"""
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -13,6 +17,10 @@ SHEET = GSPREAD_CLIENT.open("words")
 
 
 def word_picker(level):
+    """
+    Randomly selects a word from the Google Sheets document,
+    depending of difficulty setting.
+    """
     from numpy import random
     choice = random.randint(SHEET.worksheet(level).cell(1, 2).value)
     word_choice = SHEET.worksheet(level).cell(choice, 1).value
@@ -20,6 +28,9 @@ def word_picker(level):
 
 
 def choose_level():
+    """
+    Takes input from player to decide complication level of the game.
+    """
     print("Level 1: Easy\n")
     print("Level 2: Medium\n")
     print("Level 3: Hard\n")
@@ -36,6 +47,9 @@ def choose_level():
 
 
 def hidden_word_list(word):
+    """
+    Generates hidden word list from generated word.
+    """
     hidden_list = []
     x = 1
     while x <= len(word):
@@ -45,6 +59,10 @@ def hidden_word_list(word):
 
 
 def check_input(letter, word):
+    """
+    Checks input letter from player against word.
+    Returns positions of the letter in the word or 0.
+    """
     positions = [pos for pos, char in enumerate(word) if char == letter]
     if positions == []:
         return 0
@@ -53,11 +71,16 @@ def check_input(letter, word):
 
 
 def play_game(word, hidden_letters):
+    """
+    Function to run the game.
+    Takes input from the user and compares it to the generated word.
+    Looks to compare guessed word against generated word.
+    """
     word_list = list(word)
     guessed_letters = []
-    imgh = 1
+    img_hangman = 1
     while hidden_letters != word_list:
-        print(SHEET.worksheet("hang").cell(1, imgh).value)
+        print(SHEET.worksheet("hang").cell(1, img_hangman).value)
         print()
         print(hidden_letters)
         print()
@@ -68,13 +91,13 @@ def play_game(word, hidden_letters):
         if guess == 0:
             print(f"Sorry, the word doesn't contain the letter {letter}\n")
             guessed_letters.append(letter)
-            if imgh == 7:
+            if img_hangman == 7:
                 print(SHEET.worksheet("hang").cell(1, 8).value)
                 print()
                 print(f"You lost! The word was '{word}'\n")
                 print("Try again!\n")
                 main()
-            imgh += 1
+            img_hangman += 1
         else:
             for pos in guess:
                 hidden_letters[pos] = letter
@@ -83,6 +106,10 @@ def play_game(word, hidden_letters):
 
 
 def main():
+    """
+    Primary function. Runs repeatedly.
+    Generates a word and hidden clue and run's the game.
+    """
     print("Lets play Hangman!\n")
     print(SHEET.worksheet("hang").cell(1, 8).value)
     print("\n")
