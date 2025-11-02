@@ -59,16 +59,44 @@ def hidden_word_list(word):
     return hidden_list
 
 
-def check_input(letter, word):
+def check_used_already(letter, guessed):
+    """
+    Checks letter has not already been used.
+    """
+    if letter in guessed:
+        return 2
+    else:
+        return 1
+
+
+def valid_input(letter, guessed):
+    """
+    Checks that input character is alphabetical.
+    """
+    if letter.isalpha():
+        result = check_used_already(letter, guessed)
+        return result
+    else:
+        return 0
+
+
+def check_input(letter, word, guessed):
     """
     Checks input letter from player against word.
     Returns positions of the letter in the word or 0.
     """
+    letter.lower()
+    validation = valid_input(letter, guessed)
     positions = [pos for pos, char in enumerate(word) if char == letter]
-    if positions == []:
-        return 0
-    else:
-        return positions
+    if validation == 0:
+        return "x"
+    elif validation == 1:
+        if positions == []:
+            return 0
+        else:
+            return positions
+    elif validation == 2:
+        return "xx"
 
 
 def play_game(word, hidden_letters):
@@ -87,9 +115,13 @@ def play_game(word, hidden_letters):
         print()
         print(f"Wrong guesses: {guessed_letters}\n")
         letter = input("Guess a letter...\n")
-        guess = check_input(letter, word)
+        guess = check_input(letter, word, guessed_letters)
         print()
-        if guess == 0:
+        if guess == "x":
+            print(f"{letter} is not a letter!\n")
+        elif guess == "xx":
+            print(f"You have already tried {letter}!")
+        elif guess == 0:
             print(f"Sorry, the word doesn't contain the letter {letter}\n")
             guessed_letters.append(letter)
             if img_hangman == 7:
