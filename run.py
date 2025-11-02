@@ -35,7 +35,7 @@ def choose_level():
     print("Level 1: Easy\n")
     print("Level 2: Medium\n")
     print("Level 3: Hard\n")
-    level_choice = input("Choose a difficulty level (1,2 or 3)")
+    level_choice = input("Choose a difficulty level (1,2 or 3)\n")
     if level_choice == "1":
         return "easy"
     elif level_choice == "2":
