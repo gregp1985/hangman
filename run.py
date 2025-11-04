@@ -23,6 +23,7 @@ Global variables
 player_name = ""
 current_wins = 0
 current_losses = 0
+used_words = []
 
 
 def word_picker(level):
@@ -130,7 +131,13 @@ def generate_word(level):
     Generates randomly chosen word dependent on difficulty level choice
     and runs the game.
     """
+    global used_words
+    print(f"Words so far: {used_words}\n")
     word = word_picker(level)
+    if word in used_words:
+        generate_word(level)
+    else:
+        used_words.append(word)
     hidden_letters = hidden_word_list(word)
     level_cap = level.capitalize()
     print(f"Difficulty level: {level_cap}")
