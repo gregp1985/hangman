@@ -6,7 +6,7 @@ Players can choose different levels of difficulty and play to guess the randomly
 
 [Here is the live version of my project](https://hangmangame-534861d8daf1.herokuapp.com/)
 
-![Site Mockup]()
+![Site Mockup](/assets/images/site-mockup.png)
 
 ## How to Play
 
@@ -20,24 +20,41 @@ The word is presented as under scores representing letters and are replaced with
 
 Incorrect guesses result in the hangman image being created and incorrect letters being added to the wrong guess list.
 
-![Wins / Losses]()
+![Wins / Losses](/assets/images/wins-losses.png)
 
 ## Features
+
+- Hangman image is updated on each incorrect guess using preformatted images from the Google Sheets Document
+
+![Google Sheets Hangman Images](/assets/images/google-sheets-hangman-images.png)
 
 - Difficulty Settings (can be changed on each round)
     - Easy (4-5 letters)
     - Medium (6-7 letters)
     - Hard (8-9 letters)
-![Difficulty settings]()
+    
+![Difficulty settings](/assets/images/level-choices.png)
 - Words randomly selected from list of hundreds of different words (currently residing on a spreadsheet in Google Sheets)
     - Words selected at random dependent on difficulty
     - Words cannot be repeated in the game cycle
-![Google Sheets]()
+
+![Google Sheets Easy Words](/assets/images/google-sheets-easy-words.png)
+
+![Google Sheets Medium Words](/assets/images/google-sheets-medium-words.png)
+
+![Google Sheets Hard Words](/assets/images/google-sheets-hard-words.png)
+
 - Word is represented by underscores to hide it from the player
 - Scores are tallied as part of the game cycle
-![Score Tally]()
+
+![Wins / Losses](/assets/images/wins-losses.png)
+
 - Validation in place to stop "non" letters, repeat letters and multiple letter entries from being inputted by the player
-![Validation]()
+
+![NonAlpha](/assets/images/non-alpha.png)
+![NonAlpha2](/assets/images/non-alpha-2.png)
+![Multiple Characters](/assets/images/multiple-characters.png)
+![Duplicate Characters](/assets/images/duplicate_character.png)
 
 ## Future Feature
 
@@ -58,7 +75,9 @@ The word is turned into a list and a hidden list for the player to see. This is 
 
 I have manually tested this project by doing the following:
 
-- Passed the code through the PEP8 linter and confirmed no problems (PEP8online.com)
+- Passed the code through the PEP8 linter and confirmed no problems (https://pep8ci.herokuapp.com/)
+
+![CI PEP8 Linter](/assets/images/ci-python-linter.png)
 - Given invalid inputs (incorrect characters, duplicate characters, multiple characters) to confirm the expected output.
 - Tested in my local terminal as well as the Code Institute Heroku terminal.
 
