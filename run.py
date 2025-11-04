@@ -81,9 +81,11 @@ def valid_input(letter, guessed):
     """
     Checks that input character is alphabetical.
     """
-    if letter.isalpha():
+    if letter.isalpha() and len(letter) == 1:
         result = check_used_already(letter, guessed)
         return result
+    elif len(letter) > 1:
+        return 3 
     else:
         return 0
 
@@ -105,9 +107,15 @@ def check_input(letter, word, guessed):
             return positions
     elif validation == 2:
         return "xx"
+    elif validation == 3:
+        return "xxx"
 
 
 def update_score(score):
+    """
+    Updates global variables current_wins and current_losses
+    to keep a running tally.
+    """
     global current_wins
     global current_losses
     if score == 1:
@@ -118,6 +126,10 @@ def update_score(score):
 
 
 def generate_word(level):
+    """
+    Generates randomly chosen word dependent on difficulty level choice
+    and runs the game.
+    """
     word = word_picker(level)
     hidden_letters = hidden_word_list(word)
     level_cap = level.capitalize()
@@ -148,6 +160,8 @@ def play_game(level, word, hidden_letters):
             print(f"{letter} is not a letter!\n")
         elif guess == "xx":
             print(f"You have already tried {letter}!")
+        elif guess == "xxx":
+            print("Too many characters! Enter 1 letter at a time!")
         elif guess == 0:
             print(f"Sorry, the word doesn't contain the letter {letter}\n")
             guessed_letters.append(letter)
@@ -162,6 +176,7 @@ def play_game(level, word, hidden_letters):
         else:
             for pos in guess:
                 hidden_letters[pos] = letter
+            print(f"Yep '{letter}' is in the word!")
     print(f"Well done {player_name} you won! The word was '{word}'\n")
     update_score(1)
     generate_word(level)
