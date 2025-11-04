@@ -132,14 +132,20 @@ def generate_word(level):
     and runs the game.
     """
     global used_words
+    global current_wins
+    global current_losses
     print(f"Words so far: {used_words}\n")
     level_cap = level.capitalize()
     print(f"Difficulty level: {level_cap}\n")
     if used_words != []:
+        print("Changing the difficulty level will reset your current score!\n")
         level_change = input("Change Level? Y/N\n")
         print()
         if level_change.lower() == "y":
             level = choose_level()
+            used_words.clear()
+            current_wins = 0
+            current_losses = 0
     word = word_picker(level)
     if word in used_words:
         generate_word(level)

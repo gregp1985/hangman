@@ -24,7 +24,7 @@ Incorrect guesses result in the hangman image being created and incorrect letter
 
 ## Features
 
-- Difficulty Settings
+- Difficulty Settings (can be changed on each round)
     - Easy (4-5 letters)
     - Medium (6-7 letters)
     - Hard (8-9 letters)
