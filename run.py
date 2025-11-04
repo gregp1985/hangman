@@ -133,14 +133,19 @@ def generate_word(level):
     """
     global used_words
     print(f"Words so far: {used_words}\n")
+    level_cap = level.capitalize()
+    print(f"Difficulty level: {level_cap}\n")
+    if used_words != []:
+        level_change = input("Change Level? Y/N\n")
+        print()
+        if level_change.lower() == "y":
+            level = choose_level()
     word = word_picker(level)
     if word in used_words:
         generate_word(level)
     else:
         used_words.append(word)
     hidden_letters = hidden_word_list(word)
-    level_cap = level.capitalize()
-    print(f"Difficulty level: {level_cap}")
     play_game(level, word, hidden_letters)
 
 
