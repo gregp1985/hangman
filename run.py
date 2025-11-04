@@ -1,4 +1,5 @@
 # Hangman Game
+
 """
 Connection of run.py to Google Sheets spreadsheet.
 Creation of variables to access Google Sheets.
@@ -15,6 +16,13 @@ CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("words")
+
+"""
+Global variables
+"""
+player_name = ""
+current_wins = 0
+current_losses = 0
 
 
 def word_picker(level):
@@ -99,12 +107,31 @@ def check_input(letter, word, guessed):
         return "xx"
 
 
-def play_game(word, hidden_letters):
+def update_score(score):
+    global current_wins
+    global current_losses
+    if score == 1:
+        current_wins += 1
+    else:
+        current_losses += 1
+    print(f"Wins: {current_wins} Losses: {current_losses}")
+
+
+def generate_word(level):
+    word = word_picker(level)
+    hidden_letters = hidden_word_list(word)
+    level_cap = level.capitalize()
+    print(f"Difficulty level: {level_cap}")
+    play_game(level, word, hidden_letters)
+
+
+def play_game(level, word, hidden_letters):
     """
     Function to run the game.
     Takes input from the user and compares it to the generated word.
     Looks to compare guessed word against generated word.
     """
+    global player_name
     word_list = list(word)
     guessed_letters = []
     img_hangman = 1
@@ -127,15 +154,17 @@ def play_game(word, hidden_letters):
             if img_hangman == 7:
                 print(SHEET.worksheet("hang").cell(1, 8).value)
                 print()
-                print(f"You lost! The word was '{word}'\n")
+                print(f"Sorry {player_name} you lost! The word was '{word}'\n")
                 print("Try again!\n")
-                main()
+                update_score(0)
+                generate_word(level)
             img_hangman += 1
         else:
             for pos in guess:
                 hidden_letters[pos] = letter
-    print(f"You won! The word was '{word}'\n")
-    main()
+    print(f"Well done {player_name} you won! The word was '{word}'\n")
+    update_score(1)
+    generate_word(level)
 
 
 def main():
@@ -143,13 +172,15 @@ def main():
     Primary function. Runs repeatedly.
     Generates a word and hidden clue and run's the game.
     """
+    global player_name
     print("Lets play Hangman!\n")
     print(SHEET.worksheet("hang").cell(1, 8).value)
     print("\n")
+    player_name = input("Enter your name:\n")
+    print()
+    print(f"Thanks {player_name}. What level do you want to play at?\n")
     level = choose_level()
-    word = word_picker(level)
-    hidden_letters = hidden_word_list(word)
-    play_game(word, hidden_letters)
+    generate_word(level)
 
 
 main()
