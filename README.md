@@ -1,32 +1,50 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+![hangman logo](/assets/images/hangman.png)
 
-Welcome,
+This hangman game is a Python terminal game, which runs in the Code Institute mock terminal on Heroku
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+Players can choose different levels of difficulty and play to guess the randomly chosen word. Easy 4-5 letters, Medium 6-7 letters and Hard 8-9 letters.
 
-## Reminders
+[Here is the live version of my project](https://hangmangame-534861d8daf1.herokuapp.com/)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+![Site Mockup]()
 
-## Creating the Heroku app
+## How to Play
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+This hangman game is the classic guess the word letter by letter. 
 
-1. `heroku/python`
-2. `heroku/nodejs`
+Every incorrect guess is recorded and an additional part of the hangman image is added to the image (7 in total).
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+If the player wins or loses the game this is recorded and they can play again. The score is tallied at the beginning of each round.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+The word is presented as under scores representing letters and are replaced with correct guesses.
 
-Connect your GitHub repository and deploy as normal.
+Incorrect guesses result in the hangman image being created and incorrect letters are added to the wrong guess list.
 
-## Constraints
+![Wins / Losses]()
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## Features
 
----
+- Difficulty Settings
+    - Easy (4-5 letters)
+    - Medium (6-7 letters)
+    - Hard (8-9 letters)
+![Difficulty settings]()
+- Words randomly selected from list of hundreds of different words
+    - Words selected at random dependent of difficulty
+    - Words cannot be repeated in the game cycle
+- Word is represented by underscores to hide it from the player
+- Scores are tallied as part of the game cycle
+![Score Tally]()
+- Validation in place to stop "non" letters and repeat letters from being selected
+![Validation]()
 
-Happy coding!
+## Future Feature
+
+- Add complexity with multiple word phrases
+- Addtion of a timed game facility to compete against others and give statistics
+
+## Data Model
+
+
+
+## Testing
