@@ -29,13 +29,14 @@ Incorrect guesses result in the hangman image being created and incorrect letter
     - Medium (6-7 letters)
     - Hard (8-9 letters)
 ![Difficulty settings]()
-- Words randomly selected from list of hundreds of different words
+- Words randomly selected from list of hundreds of different words (currently residing on a spreadsheet in Google Sheets)
     - Words selected at random dependent of difficulty
     - Words cannot be repeated in the game cycle
+![Google Sheets]()
 - Word is represented by underscores to hide it from the player
 - Scores are tallied as part of the game cycle
 ![Score Tally]()
-- Validation in place to stop "non" letters and repeat letters from being selected
+- Validation in place to stop "non" letters, repeat letters and multiple letter entries from being inputted byt he player
 ![Validation]()
 
 ## Future Feature
@@ -45,6 +46,49 @@ Incorrect guesses result in the hangman image being created and incorrect letter
 
 ## Data Model
 
+My model is based on functions and variables. Namely lists and objects.
 
+User inputs for Name and Current Scores are kept globally.
+
+All other data is created and passed between functions, including the word and letter choices.
+
+The word is turned into a list and a hidden list for the player to see. This is then used for comparison.
 
 ## Testing
+
+I have manually testes this project by doing the following:
+
+- Passed the code through the PEP8 linter and confirmed no problems (PEP8online.com)
+- Given invalid inputs (incorect characters, duplicate characters, multiple characters) to confirm the expected output.
+- Tested in my local terminal as well as the Code Institute Heroku terminal.
+
+Further Testing in file [TESTING.md](TESTING.md)
+
+## Bugs
+
+### Solved Bugs
+
+- Scores were not being updated each time but overwriting back to zero. Resolved by changing the variables to the global scope.
+- Players were able to enter non alpha characters and multiple characters each time. Resolved with validation functions.
+
+### Remaining Bugs
+
+- No bugs remaining.
+
+## Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+- Steps for deployment:
+    - Clone Repository
+    - Create new Heroku App
+    - Setup Config Vars (Port:8000 and CREDS for GoogleDocs)
+    - Set the Buildpacks to Python and NodeJS in that order
+    - Link the Heroku App to the Github repository
+    - Click on Deploy
+
+## Credits
+
+- Code Institute for the deployment terminal
+- Code Institute love-sandwiches project for the gspread and google auth imports and the links to connect to google sheets documents.
+- [Byjus.com](https://byjus.com/english) for the lists of common words

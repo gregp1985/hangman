@@ -85,7 +85,7 @@ def valid_input(letter, guessed):
         result = check_used_already(letter, guessed)
         return result
     elif len(letter) > 1:
-        return 3 
+        return 3
     else:
         return 0
 
