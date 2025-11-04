@@ -12,13 +12,13 @@ Players can choose different levels of difficulty and play to guess the randomly
 
 This hangman game is the classic guess the word letter by letter. 
 
-Every incorrect guess is recorded and an additional part of the hangman image is added to the image (7 in total).
+Every incorrect guess is recorded and an additional part of the hangman image is added (7 in total).
 
 If the player wins or loses the game this is recorded and they can play again. The score is tallied at the beginning of each round.
 
 The word is presented as under scores representing letters and are replaced with correct guesses.
 
-Incorrect guesses result in the hangman image being created and incorrect letters are added to the wrong guess list.
+Incorrect guesses result in the hangman image being created and incorrect letters being added to the wrong guess list.
 
 ![Wins / Losses]()
 
@@ -30,25 +30,25 @@ Incorrect guesses result in the hangman image being created and incorrect letter
     - Hard (8-9 letters)
 ![Difficulty settings]()
 - Words randomly selected from list of hundreds of different words (currently residing on a spreadsheet in Google Sheets)
-    - Words selected at random dependent of difficulty
+    - Words selected at random dependent on difficulty
     - Words cannot be repeated in the game cycle
 ![Google Sheets]()
 - Word is represented by underscores to hide it from the player
 - Scores are tallied as part of the game cycle
 ![Score Tally]()
-- Validation in place to stop "non" letters, repeat letters and multiple letter entries from being inputted byt he player
+- Validation in place to stop "non" letters, repeat letters and multiple letter entries from being inputted by the player
 ![Validation]()
 
 ## Future Feature
 
 - Add complexity with multiple word phrases
-- Addtion of a timed game facility to compete against others and give statistics
+- Addition of a timed game facility to compete against others and give statistics
 
 ## Data Model
 
 My model is based on functions and variables. Namely lists and objects.
 
-User inputs for Name and Current Scores are kept globally.
+User inputs for Name and Current Scores are kept globally. As is the used words list.
 
 All other data is created and passed between functions, including the word and letter choices.
 
@@ -56,10 +56,10 @@ The word is turned into a list and a hidden list for the player to see. This is 
 
 ## Testing
 
-I have manually testes this project by doing the following:
+I have manually tested this project by doing the following:
 
 - Passed the code through the PEP8 linter and confirmed no problems (PEP8online.com)
-- Given invalid inputs (incorect characters, duplicate characters, multiple characters) to confirm the expected output.
+- Given invalid inputs (incorrect characters, duplicate characters, multiple characters) to confirm the expected output.
 - Tested in my local terminal as well as the Code Institute Heroku terminal.
 
 Further Testing in file [TESTING.md](TESTING.md)
