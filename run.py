@@ -41,19 +41,26 @@ def choose_level():
     """
     Takes input from player to decide complication level of the game.
     """
-    print("Level 1: Easy\n")
-    print("Level 2: Medium\n")
-    print("Level 3: Hard\n")
-    level_choice = input("Choose a difficulty level (1,2 or 3)\n")
-    if level_choice == "1":
-        return "easy"
-    elif level_choice == "2":
-        return "medium"
-    elif level_choice == "3":
-        return "hard"
-    else:
-        print("Should be 1, 2 or 3 only!")
-        choose_level()
+    accepted_input = ["1", "2", "3"]
+    while True:
+        try:
+            print("Level 1: Easy\n")
+            print("Level 2: Medium\n")
+            print("Level 3: Hard\n")
+            level_choice = input("Choose a difficulty level (1,2 or 3)\n")
+            if level_choice in accepted_input:
+                if level_choice == "1":
+                    return "easy"
+                elif level_choice == "2":
+                    return "medium"
+                elif level_choice == "3":
+                    return "hard"
+                continue
+            else:
+                raise ValueError()
+        except ValueError:
+            print("Should be 1,2 or 3!")
+            continue
 
 
 def hidden_word_list(word):
