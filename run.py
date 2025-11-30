@@ -133,6 +133,20 @@ def update_score(score):
     print(f"Wins: {current_wins} Losses: {current_losses}")
 
 
+def name_entry():
+    global player_name
+    while True:
+        try:
+            player_name = input("Enter your name:\n")
+            if player_name != "":
+                return player_name
+            else:
+                raise ValueError()
+        except ValueError:
+            print("Player Name should not be blank!")
+            continue
+
+
 def generate_word(level):
     """
     Generates randomly chosen word dependent on difficulty level choice
@@ -216,7 +230,7 @@ def main():
     print("Lets play Hangman!\n")
     print(SHEET.worksheet("hang").cell(1, 8).value)
     print("\n")
-    player_name = input("Enter your name:\n")
+    player_name = name_entry()
     print()
     print(f"Thanks {player_name}. What level do you want to play at?\n")
     level = choose_level()
