@@ -134,6 +134,9 @@ def update_score(score):
 
 
 def name_entry():
+    """
+    Checks Name Entry is not blank
+    """
     global player_name
     while True:
         try:
@@ -160,13 +163,26 @@ def generate_word(level):
     print(f"Difficulty level: {level_cap}\n")
     if used_words != []:
         print("Changing the difficulty level will reset your current score!\n")
-        level_change = input("Change Level? Y/N\n")
-        print()
-        if level_change.lower() == "y":
-            level = choose_level()
-            used_words.clear()
-            current_wins = 0
-            current_losses = 0
+        while True:
+            try:
+                level_change = input("Change Level? Y/N\n")
+                print()
+                if level_change.lower() == "n":
+                    print(f'Difficulty Level: {level_cap}\n')
+                    break
+                elif level_change.lower() == "y":
+                    level = choose_level()
+                    level_cap = level.capitalize()
+                    used_words.clear()
+                    current_wins = 0
+                    current_losses = 0
+                    print(f'Difficulty Level: {level_cap}\n')
+                    break
+                else:
+                    raise ValueError()
+            except ValueError:
+                print("Please choose either Y or N!")
+                continue
     word = word_picker(level)
     if word in used_words:
         generate_word(level)
