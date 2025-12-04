@@ -140,12 +140,12 @@ def name_entry():
     while True:
         try:
             player_name = input("Enter your name:\n")
-            if player_name != "":
+            if player_name != "" and player_name.isalpha():
                 return player_name
             else:
                 raise ValueError()
         except ValueError:
-            print("Player Name should not be blank!")
+            print("Player Name should be alphabetical with no spaces...")
             continue
 
 

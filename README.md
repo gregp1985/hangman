@@ -73,26 +73,7 @@ The word is turned into a list and a hidden list for the player to see. This is 
 
 ## Testing
 
-I have manually tested this project by doing the following:
-
-- Passed the code through the PEP8 linter and confirmed no problems (https://pep8ci.herokuapp.com/)
-
-![CI PEP8 Linter](/assets/images/ci-python-linter.png)
-- Given invalid inputs (incorrect characters, duplicate characters, multiple characters) to confirm the expected output.
-- Tested in my local terminal as well as the Code Institute Heroku terminal.
-
-Further Testing in file [TESTING.md](TESTING.md)
-
-## Bugs
-
-### Solved Bugs
-
-- Scores were not being updated each time but overwriting back to zero. Resolved by changing the variables to the global scope.
-- Players were able to enter non alpha characters and multiple characters each time. Resolved with validation functions.
-
-### Remaining Bugs
-
-- No bugs remaining.
+Testing in file [TESTING.md](TESTING.md)
 
 ## Deployment
 

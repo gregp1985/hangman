@@ -1,5 +1,14 @@
 ![hangman logo](/assets/images/hangman.png)
-# Further Testing
+# Testing
+
+I have manually tested this project by doing the following:
+
+- Passed the code through the PEP8 linter and confirmed no problems (https://pep8ci.herokuapp.com/)
+
+![CI PEP8 Linter](/assets/images/ci-python-linter.png)
+
+- Given invalid inputs (incorrect characters, duplicate characters, multiple characters) to confirm the expected output.
+- Tested in my local terminal as well as the Code Institute Heroku terminal.
 
 Below is documentation of further tests carried out on the hangman game.
 
@@ -28,3 +37,20 @@ Below is documentation of further tests carried out on the hangman game.
 
 Tested the change level feature multiple times and Scores and Used Words list reset on level change each time as designed.
 
+## Bugs Encountered
+
+### Solved Bugs
+
+- User able to put correct letter in as capital and graded as incorrect entry, Corrected this by adding code to convert user input to lowercase before validation.
+
+- User able to enter blank username. Resolved by adding validation (while loop) to check for this and produce exception until the user makes a valid entry.
+
+- If user enters incorrect data multiple times when choosing the level a traceback error occured. Resolved by removing the code to rerun the function and implementing a while loop with a try/except function to validate the level choice.
+
+- Scores were not being updated each time but overwriting back to zero. Resolved by changing the variables to the global scope.
+
+- Players were able to enter non alpha characters and multiple characters each time. Resolved with validation functions.
+
+### Remaining Bugs
+
+- No bugs remaining.
