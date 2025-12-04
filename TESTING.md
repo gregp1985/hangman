@@ -51,6 +51,11 @@ Tested the change level feature multiple times and Scores and Used Words list re
 
 - Players were able to enter non alpha characters and multiple characters each time. Resolved with validation functions.
 
+- If the user deliberately tries to put letters or incorrect characters at a rate exceeding 1 per second for 1 minute an API error can be thrown due to too many requests to the Google Worksheet
+    - APIError: [429]: Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute per user'
+
+    Resolved by adding a 1 second sleep after the user guesses a letter. This stops the user being able to exceed the quota.
+
 ### Remaining Bugs
 
-- No bugs remaining.
+No bugs remaining

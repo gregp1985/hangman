@@ -6,6 +6,7 @@ Creation of variables to access Google Sheets.
 """
 import gspread
 from google.oauth2.service_account import Credentials
+import time
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -208,6 +209,7 @@ def play_game(level, word, hidden_letters):
         print()
         print(f"Wrong guesses: {guessed_letters}\n")
         letter = input("Guess a letter...\n")
+        time.sleep(1)
         letter = letter.lower()
         guess = check_input(letter, word, guessed_letters)
         print()
