@@ -103,7 +103,6 @@ def check_input(letter, word, guessed):
     Checks input letter from player against word.
     Returns positions of the letter in the word or 0.
     """
-    letter.lower()
     validation = valid_input(letter, guessed)
     positions = [pos for pos, char in enumerate(word) if char == letter]
     if validation == 0:
@@ -209,6 +208,7 @@ def play_game(level, word, hidden_letters):
         print()
         print(f"Wrong guesses: {guessed_letters}\n")
         letter = input("Guess a letter...\n")
+        letter = letter.lower()
         guess = check_input(letter, word, guessed_letters)
         print()
         if guess == "x":
