@@ -1,12 +1,14 @@
 # Hangman Game
 
+# Import Time module for delay in user entries
+import time
+
 """
 Connection of run.py to Google Sheets spreadsheet.
 Creation of variables to access Google Sheets.
 """
 import gspread
 from google.oauth2.service_account import Credentials
-import time
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
